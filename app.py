@@ -6,17 +6,22 @@ from flask import Flask, request, render_template
 from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
 
-app = Flask(__name__)
 try:
     nltk.data.find('tokenizers/punkt')
 except LookupError:
     nltk.download('punkt')
 
 try:
+    nltk.data.find('tokenizers/punkt_tab')
+except LookupError:
+    nltk.download('punkt_tab')
+
+try:
     nltk.data.find('corpora/stopwords')
 except LookupError:
     nltk.download('stopwords')
 
+app = Flask(__name__)
 ps = PorterStemmer()
 stop_words = set(stopwords.words('english'))
 
