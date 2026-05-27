@@ -36,9 +36,6 @@ EMAIL_SPAM_CLASSIFIER/
 ├── templates/
 │   └── index.html
 │
-├── static/
-│   └── logo.png
-│
 ├── app.py
 ├── model.pkl
 ├── vectorizer.pkl
