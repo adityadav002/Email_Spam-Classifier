@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      href="https://static.vecteezy.com/system/resources/thumbnails/006/697/974/small/mail-email-icon-template-black-color-editable-mail-email-icon-symbol-flat-illustration-for-graphic-and-web-design-free-vector.jpg"
+    />
+    <title>Spam Classifier</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        background: #ffffff;
+        color: #000000;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .container {
+        width: 90%;
+        max-width: 650px;
+        border: 2px solid #000;
+        border-radius: 18px;
+        padding: 20px;
+        background: #fff;
+        box-shadow: 10px 10px 0px #000;
+      }
+
+      h1 {
+        font-size: 32px;
+        margin-bottom: 2px;
+        text-align: center;
+      }
+
+      .subtitle {
+        text-align: center;
+        font-size: 15px;
+        margin-bottom: 15px;
+        color: #444;
+      }
+
+      textarea {
+        width: 100%;
+        min-height: 250px;
+        padding: 10px;
+        font-size: 16px;
+        line-height: 1.6;
+        border: 2px solid #000;
+        border-radius: 14px;
+        resize: vertical;
+        outline: none;
+        transition: 0.2s ease;
+        background: #fff;
+        color: #000;
+      }
+
+      textarea:focus {
+        box-shadow: 6px 6px 0px #000;
+        transform: translate(-2px, -2px);
+      }
+
+      textarea::placeholder {
+        color: #777;
+      }
+
+      button {
+        width: 100%;
+        border: 2px solid #000;
+        border-radius: 14px;
+        margin-top: 22px;
+        padding: 15px;
+        font-size: 17px;
+        font-weight: bold;
+        background: #fff;
+        color: #000;
+        box-shadow: 6px 6px 0px #000;
+        transform: translate(-2px, -2px);
+      }
+
+      button:hover {
+        background: #000;
+        color: #fff;
+        cursor: pointer;
+        transition: 0.2s ease;
+        box-shadow: 0px 0px 0px #000;
+      }
+
+      .result {
+        margin-top: 20px;
+        padding: 18px;
+        border: 2px solid #000;
+        border-radius: 14px;
+        text-align: center;
+        font-size: 22px;
+        font-weight: bold;
+      }
+
+      .spam {
+        background: #000;
+        color: #fff;
+      }
+
+      .not-spam {
+        background: #fff;
+        color: #000;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Email/SMS Spam Classifier</h1>
+      <p class="subtitle">Detect whether an email or message is spam or not.</p>
+
+      <form action="/predict" method="POST">
+        <textarea
+          name="message"
+          placeholder="Paste your email or message here..."
+        >
+{{ message if message else "" }}</textarea
+        >
+        <button type="submit">Analyze Message</button>
+      </form>
+
+      {% if prediction %}
+      <div
+        class="result {% if prediction == 'Spam' %}spam{% else %}not-spam{% endif %}"
+      >
+        {{ prediction }}
+      </div>
+      {% endif %}
+    </div>
+  </body>
+</html>
